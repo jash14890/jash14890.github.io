@@ -19,12 +19,9 @@
       padding: 2rem 1rem;
     }
 
-    .page {
-      max-width: 720px;
-      margin: 0 auto;
-    }
+    .page { max-width: 720px; margin: 0 auto; }
 
-    /* Hero */
+    /* ── Hero ── */
     .hero {
       background: linear-gradient(160deg, #EAF3DE 0%, #C0DD97 100%);
       border-radius: 12px;
@@ -34,211 +31,266 @@
       overflow: hidden;
       border: 0.5px solid #97C459;
     }
-
     .hero::before {
       content: '';
       position: absolute;
-      top: -60px;
-      right: -60px;
-      width: 200px;
-      height: 200px;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
       border-radius: 50%;
       background: rgba(99,153,34,0.12);
     }
-
     .hero-tag {
       display: inline-block;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: #3B6D11;
-      color: #EAF3DE;
-      padding: 4px 12px;
-      border-radius: 8px;
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: #3B6D11; color: #EAF3DE;
+      padding: 4px 12px; border-radius: 8px;
       margin-bottom: 1.2rem;
     }
-
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      line-height: 1.2;
-      color: #173404;
+      font-size: 2.2rem; font-weight: 700;
+      line-height: 1.2; color: #173404;
       margin-bottom: 1rem;
     }
-
     .hero p {
-      font-size: 1rem;
-      line-height: 1.75;
-      color: #3B6D11;
-      max-width: 520px;
+      font-size: 1rem; line-height: 1.75;
+      color: #3B6D11; max-width: 520px;
       margin-bottom: 2rem;
     }
 
+    /* ── Buttons ── */
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
     .sdg-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #173404;
-      color: #C0DD97;
-      border: none;
-      padding: 12px 22px;
-      border-radius: 8px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #173404; color: #C0DD97;
+      border: none; padding: 12px 22px; border-radius: 8px;
       font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
+      font-size: 0.95rem; font-weight: 500; cursor: pointer;
       transition: background 0.2s, transform 0.1s;
     }
-
     .sdg-btn:hover { background: #27500A; transform: translateY(-1px); }
     .sdg-btn:active { transform: scale(0.98); }
     .sdg-btn i { font-size: 18px; }
 
-    /* Stats */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 2rem;
+    .solution-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #173404;
+      border: 1.5px solid #3B6D11;
+      padding: 12px 22px; border-radius: 8px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.95rem; font-weight: 500; cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
     }
+    .solution-btn:hover { background: rgba(59,109,17,0.1); transform: translateY(-1px); }
+    .solution-btn:active { transform: scale(0.98); }
+    .solution-btn i { font-size: 18px; }
 
+    /* ── Stats ── */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px; margin-bottom: 2rem;
+    }
     .stat-card {
-      background: #fff;
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
+      background: #fff; border-radius: 8px;
+      padding: 1rem; text-align: center;
       border: 0.5px solid #d3d1c7;
     }
-
     .stat-num {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #3B6D11;
-      line-height: 1;
-      margin-bottom: 4px;
+      font-size: 1.6rem; font-weight: 700;
+      color: #3B6D11; line-height: 1; margin-bottom: 4px;
     }
+    .stat-label { font-size: 0.78rem; color: #5f5e5a; line-height: 1.4; }
 
-    .stat-label {
-      font-size: 0.78rem;
-      color: #5f5e5a;
-      line-height: 1.4;
-    }
-
-    /* Modal overlay */
+    /* ── Shared overlay base ── */
     .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55); z-index: 999;
+      align-items: center; justify-content: center;
     }
-
     .overlay.active { display: flex; }
 
+    /* ── SDG modal ── */
     .modal {
-      background: #fff;
-      border-radius: 12px;
+      background: #fff; border-radius: 12px;
       padding: 2rem 2rem 1.5rem;
-      max-width: 440px;
-      width: 90%;
+      max-width: 440px; width: 90%;
       border: 0.5px solid #d3d1c7;
     }
-
     .modal-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #EAF3DE;
-      color: #3B6D11;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 4px 12px;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      letter-spacing: 0.04em;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #EAF3DE; color: #3B6D11;
+      font-size: 12px; font-weight: 500;
+      padding: 4px 12px; border-radius: 8px;
+      margin-bottom: 1rem; letter-spacing: 0.04em;
     }
-
     .modal h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 0.8rem;
-      line-height: 1.3;
+      font-size: 1.4rem; font-weight: 700;
+      color: #1a1a1a; margin-bottom: 0.8rem; line-height: 1.3;
     }
-
     .modal p {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      color: #5f5e5a;
-      margin-bottom: 1.2rem;
+      font-size: 0.9rem; line-height: 1.7;
+      color: #5f5e5a; margin-bottom: 1.2rem;
     }
-
     .modal-goals {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 1.5rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 8px; margin-bottom: 1.5rem;
     }
-
     .goal-item {
-      background: #f5f7f2;
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 0.82rem;
-      color: #5f5e5a;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
+      background: #f5f7f2; border-radius: 8px;
+      padding: 10px 12px; font-size: 0.82rem; color: #5f5e5a;
+      display: flex; align-items: flex-start; gap: 8px;
     }
-
-    .goal-item i {
-      font-size: 16px;
-      color: #639922;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
+    .goal-item i { font-size: 16px; color: #639922; flex-shrink: 0; margin-top: 1px; }
     .modal-close {
-      width: 100%;
-      background: transparent;
-      border: 0.5px solid #b4b2a9;
-      color: #1a1a1a;
-      padding: 10px;
-      border-radius: 8px;
+      width: 100%; background: transparent;
+      border: 0.5px solid #b4b2a9; color: #1a1a1a;
+      padding: 10px; border-radius: 8px;
       font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.9rem;
-      cursor: pointer;
+      font-size: 0.9rem; cursor: pointer;
       transition: background 0.15s;
     }
-
     .modal-close:hover { background: #f5f7f2; }
 
+    /* ── Solution full-page overlay ── */
+    .solution-overlay {
+      display: none; position: fixed; inset: 0;
+      background: #f5f7f2; z-index: 1000;
+      overflow-y: auto; padding: 2rem 1rem;
+    }
+    .solution-overlay.active { display: block; }
+
+    .solution-inner {
+      max-width: 720px; margin: 0 auto; position: relative;
+    }
+
+    .sol-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.88rem; color: #3B6D11; font-weight: 500;
+      background: none; border: none; cursor: pointer;
+      margin-bottom: 1.8rem; padding: 0;
+      font-family: 'Source Sans 3', sans-serif;
+      transition: gap 0.2s;
+    }
+    .sol-back:hover { gap: 10px; }
+    .sol-back i { font-size: 16px; }
+
+    .solution-hero {
+      background: linear-gradient(160deg, #EAF3DE 0%, #C0DD97 100%);
+      border-radius: 12px; padding: 3rem 2.5rem 2.5rem;
+      margin-bottom: 2rem; position: relative;
+      overflow: hidden; border: 0.5px solid #97C459;
+    }
+    .solution-hero::before {
+      content: ''; position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: rgba(99,153,34,0.12);
+    }
+    .solution-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 700;
+      line-height: 1.2; color: #173404; margin-bottom: 1rem;
+    }
+    .solution-hero p {
+      font-size: 1rem; line-height: 1.75;
+      color: #3B6D11; max-width: 540px; margin: 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: #173404; margin-bottom: 1rem;
+    }
+
+    .steps {
+      display: flex; flex-direction: column;
+      background: #fff; border-radius: 12px;
+      border: 0.5px solid #d3d1c7; overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .step {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 0.5px solid #d3d1c7;
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #EAF3DE; color: #3B6D11;
+      font-size: 0.85rem; font-weight: 500;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-content h3 { font-size: 0.95rem; font-weight: 500; color: #173404; margin-bottom: 3px; }
+    .step-content p { font-size: 0.85rem; color: #5f5e5a; line-height: 1.6; }
+
+    .benefits-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 10px; margin-bottom: 2rem;
+    }
+    .benefit-card {
+      background: #fff; border-radius: 10px;
+      border: 0.5px solid #d3d1c7; padding: 1.2rem;
+    }
+    .benefit-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: #EAF3DE; display: flex;
+      align-items: center; justify-content: center;
+      margin-bottom: 0.8rem;
+    }
+    .benefit-icon i { font-size: 18px; color: #3B6D11; }
+    .benefit-card h3 { font-size: 0.92rem; font-weight: 500; color: #173404; margin-bottom: 4px; }
+    .benefit-card p { font-size: 0.82rem; color: #5f5e5a; line-height: 1.55; }
+
+    .sdg-banner {
+      background: #173404; border-radius: 12px;
+      padding: 1.8rem 2rem; display: flex;
+      align-items: center; gap: 1.5rem; margin-bottom: 2rem;
+    }
+    .sdg-circle {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #3B6D11; display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .sdg-circle i { font-size: 26px; color: #C0DD97; }
+    .sdg-banner h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      color: #C0DD97; margin-bottom: 4px;
+    }
+    .sdg-banner p { font-size: 0.85rem; color: #97C459; line-height: 1.6; }
+
     @media (max-width: 500px) {
-      .hero { padding: 2rem 1.25rem; }
-      .hero h1 { font-size: 1.6rem; }
-      .stats-row { grid-template-columns: 1fr; }
+      .hero, .solution-hero { padding: 2rem 1.25rem; }
+      .hero h1, .solution-hero h1 { font-size: 1.6rem; }
+      .stats-row, .benefits-grid { grid-template-columns: 1fr; }
       .modal-goals { grid-template-columns: 1fr; }
+      .sdg-banner { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
+<!-- ── Main page ── -->
 <div class="page">
-
   <div class="hero">
     <div class="hero-tag">Environmental Issue</div>
     <h1>Excessive Use of Fertilizers</h1>
     <p>Fertilizers containing nitrogen and phosphorus are often applied in amounts far beyond what plants need. Excess nutrients enter water systems through runoff, triggering algal blooms and eutrophication — a growing threat to ecosystems and sustainable food production.</p>
-    <button class="sdg-btn" onclick="document.getElementById('sdg-overlay').classList.add('active')">
-      <i class="ti ti-leaf" aria-hidden="true"></i>
-      Learn about SDG 12
-    </button>
+    <div class="btn-row">
+      <button class="sdg-btn" onclick="document.getElementById('sdg-overlay').classList.add('active')">
+        <i class="ti ti-leaf" aria-hidden="true"></i>
+        Learn about SDG 12
+      </button>
+      <button class="solution-btn" onclick="document.getElementById('solution-overlay').classList.add('active')">
+        <i class="ti ti-bulb" aria-hidden="true"></i>
+        Our Solution
+      </button>
+    </div>
   </div>
 
   <div class="stats-row">
@@ -255,14 +307,13 @@
       <div class="stat-label">directly connected to responsible consumption & production</div>
     </div>
   </div>
-
 </div>
 
-<!-- SDG 12 Modal -->
+<!-- ── SDG 12 Modal ── -->
 <div class="overlay" id="sdg-overlay">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="sdg-title">
     <div class="modal-badge"><i class="ti ti-world" aria-hidden="true"></i> United Nations SDG</div>
-    <h2 id="modal-title">SDG 12 — Responsible Consumption and Production</h2>
+    <h2 id="sdg-title">SDG 12 — Responsible Consumption and Production</h2>
     <p>Excessive fertilizer use is directly linked to SDG 12 because it represents both pollution and inefficient use of resources, making truly sustainable food production harder to achieve.</p>
     <div class="modal-goals">
       <div class="goal-item"><i class="ti ti-droplet" aria-hidden="true"></i>Reduce water pollution from nutrient runoff</div>
@@ -271,6 +322,87 @@
       <div class="goal-item"><i class="ti ti-chart-line" aria-hidden="true"></i>Reduce environmental impact of food systems</div>
     </div>
     <button class="modal-close" onclick="document.getElementById('sdg-overlay').classList.remove('active')">Close</button>
+  </div>
+</div>
+
+<!-- ── Solution full-page overlay ── -->
+<div class="solution-overlay" id="solution-overlay">
+  <div class="solution-inner">
+
+    <button class="sol-back" onclick="document.getElementById('solution-overlay').classList.remove('active')">
+      <i class="ti ti-arrow-left" aria-hidden="true"></i> Back
+    </button>
+
+    <div class="solution-hero">
+      <div class="hero-tag">Sustainable Chemistry Solution</div>
+      <h1>Slow-Release Fertilizers</h1>
+      <p>Instead of flooding soil with nutrients all at once, slow-release fertilizers deliver nutrients gradually over time — allowing plants to absorb what they need, when they need it, and dramatically reducing environmental harm.</p>
+    </div>
+
+    <p class="section-title">How it works</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Controlled coating</h3>
+          <p>Fertilizer granules are coated with polymer or sulfur layers that regulate how quickly nutrients dissolve into the soil.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Gradual nutrient release</h3>
+          <p>Nutrients are released slowly over weeks or months, matched to the plant's natural growth cycle rather than all at once.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Efficient plant uptake</h3>
+          <p>Plants absorb nutrients more efficiently because supply matches demand — less is wasted and less escapes into waterways.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Reduced runoff</h3>
+          <p>With fewer excess nutrients in the soil at any one time, the risk of nitrogen and phosphorus leaching into water systems is significantly lowered.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-title">Key benefits</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="ti ti-droplet-off" aria-hidden="true"></i></div>
+        <h3>Less water pollution</h3>
+        <p>Reduced nutrient runoff means fewer algal blooms and less eutrophication in rivers, lakes, and oceans.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="ti ti-plant" aria-hidden="true"></i></div>
+        <h3>Better plant health</h3>
+        <p>A steady nutrient supply promotes stronger, more consistent plant growth compared to irregular large doses.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="ti ti-recycle" aria-hidden="true"></i></div>
+        <h3>Efficient resource use</h3>
+        <p>Less fertilizer is wasted, meaning farmers can use smaller quantities while achieving the same or better crop yields.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="ti ti-world" aria-hidden="true"></i></div>
+        <h3>Supports sustainability</h3>
+        <p>Aligns with global goals for responsible production by reducing the environmental footprint of farming.</p>
+      </div>
+    </div>
+
+    <div class="sdg-banner">
+      <div class="sdg-circle"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+      <div>
+        <h3>Linked to SDG 12 — Responsible Consumption and Production</h3>
+        <p>Slow-release fertilizers directly support SDG 12 by reducing pollution, improving resource efficiency, and making food production more sustainable for future generations.</p>
+      </div>
+    </div>
+
   </div>
 </div>
 
