@@ -21,6 +21,12 @@
 
     .page { max-width: 720px; margin: 0 auto; }
 
+    /* ── Page load animations ── */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     /* ── Hero ── */
     .hero {
       background: linear-gradient(160deg, #EAF3DE 0%, #C0DD97 100%);
@@ -30,6 +36,7 @@
       position: relative;
       overflow: hidden;
       border: 0.5px solid #97C459;
+      animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
     .hero::before {
       content: '';
@@ -91,6 +98,7 @@
     .stats-row {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 10px; margin-bottom: 2rem;
+      animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
     }
     .stat-card {
       background: #fff; border-radius: 8px;
@@ -155,29 +163,44 @@
     }
     .modal-close:hover { background: #f5f7f2; }
 
-    /* ── Solution full-page overlay ── */
-    .solution-overlay {
+    /* ── Full-page overlays (solution + limitations) ── */
+    .full-overlay {
       display: none; position: fixed; inset: 0;
       background: #f5f7f2; z-index: 1000;
       overflow-y: auto; padding: 2rem 1rem;
     }
-    .solution-overlay.active { display: block; }
+    .full-overlay.active { display: block; }
 
-    .solution-inner {
-      max-width: 720px; margin: 0 auto; position: relative;
+    .full-inner { max-width: 720px; margin: 0 auto; }
+
+    .nav-row {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem; flex-wrap: wrap; gap: 10px;
     }
 
-    .sol-back {
+    .nav-back {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 0.88rem; color: #3B6D11; font-weight: 500;
-      background: none; border: none; cursor: pointer;
-      margin-bottom: 1.8rem; padding: 0;
+      background: none; border: none; cursor: pointer; padding: 0;
       font-family: 'Source Sans 3', sans-serif;
       transition: gap 0.2s;
     }
-    .sol-back:hover { gap: 10px; }
-    .sol-back i { font-size: 16px; }
+    .nav-back:hover { gap: 10px; }
+    .nav-back i { font-size: 16px; }
 
+    .nav-next {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.88rem; color: #fff; font-weight: 500;
+      background: #993C1D; border: none; cursor: pointer;
+      padding: 8px 16px; border-radius: 8px;
+      font-family: 'Source Sans 3', sans-serif;
+      transition: background 0.2s, gap 0.2s;
+    }
+    .nav-next:hover { background: #712B13; gap: 10px; }
+    .nav-next i { font-size: 16px; }
+
+    /* ── Solution page ── */
     .solution-hero {
       background: linear-gradient(160deg, #EAF3DE 0%, #C0DD97 100%);
       border-radius: 12px; padding: 3rem 2.5rem 2.5rem;
@@ -264,9 +287,69 @@
     }
     .sdg-banner p { font-size: 0.85rem; color: #97C459; line-height: 1.6; }
 
+    /* ── Limitations page ── */
+    .lim-hero {
+      background: linear-gradient(160deg, #FAECE7 0%, #F5C4B3 100%);
+      border-radius: 12px; padding: 3rem 2.5rem 2.5rem;
+      margin-bottom: 2rem; position: relative;
+      overflow: hidden; border: 0.5px solid #F0997B;
+    }
+    .lim-hero::before {
+      content: ''; position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: rgba(216,90,48,0.1);
+    }
+    .lim-hero .hero-tag { background: #993C1D; color: #FAECE7; }
+    .lim-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 700;
+      line-height: 1.2; color: #4A1B0C; margin-bottom: 1rem;
+    }
+    .lim-hero p {
+      font-size: 1rem; line-height: 1.75;
+      color: #993C1D; max-width: 540px; margin: 0;
+    }
+
+    .cons-grid {
+      display: flex; flex-direction: column;
+      gap: 8px; margin-bottom: 2rem;
+    }
+    .con-card {
+      background: #fff; border-radius: 10px;
+      border: 0.5px solid #d3d1c7; overflow: hidden;
+    }
+    .con-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 1rem 1.2rem; cursor: pointer;
+      user-select: none; transition: background 0.15s;
+    }
+    .con-header:hover { background: #fdf9f4; }
+    .con-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: #FAECE7; display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .con-icon i { font-size: 16px; color: #993C1D; }
+    .con-title { flex: 1; font-size: 0.92rem; font-weight: 500; color: #1a1a1a; }
+    .con-chevron { font-size: 16px; color: #b4b2a9; transition: transform 0.25s ease; }
+    .con-card.open .con-chevron { transform: rotate(180deg); }
+    .con-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 1.2rem; font-size: 0.85rem;
+      color: #5f5e5a; line-height: 1.65;
+      border-top: 0px solid #d3d1c7;
+    }
+    .con-card.open .con-body {
+      max-height: 200px;
+      padding: 0.8rem 1.2rem 1rem;
+      border-top-width: 0.5px;
+    }
+
     @media (max-width: 500px) {
-      .hero, .solution-hero { padding: 2rem 1.25rem; }
-      .hero h1, .solution-hero h1 { font-size: 1.6rem; }
+      .hero, .solution-hero, .lim-hero { padding: 2rem 1.25rem; }
+      .hero h1, .solution-hero h1, .lim-hero h1 { font-size: 1.6rem; }
       .stats-row, .benefits-grid { grid-template-columns: 1fr; }
       .modal-goals { grid-template-columns: 1fr; }
       .sdg-banner { flex-direction: column; text-align: center; }
@@ -325,13 +408,17 @@
   </div>
 </div>
 
-<!-- ── Solution full-page overlay ── -->
-<div class="solution-overlay" id="solution-overlay">
-  <div class="solution-inner">
-
-    <button class="sol-back" onclick="document.getElementById('solution-overlay').classList.remove('active')">
-      <i class="ti ti-arrow-left" aria-hidden="true"></i> Back
-    </button>
+<!-- ── Solution page ── -->
+<div class="full-overlay" id="solution-overlay">
+  <div class="full-inner">
+    <div class="nav-row">
+      <button class="nav-back" onclick="document.getElementById('solution-overlay').classList.remove('active')">
+        <i class="ti ti-arrow-left" aria-hidden="true"></i> Back
+      </button>
+      <button class="nav-next" onclick="showLimitations()">
+        Limitations <i class="ti ti-arrow-right" aria-hidden="true"></i>
+      </button>
+    </div>
 
     <div class="solution-hero">
       <div class="hero-tag">Sustainable Chemistry Solution</div>
@@ -406,10 +493,97 @@
   </div>
 </div>
 
+<!-- ── Limitations page ── -->
+<div class="full-overlay" id="limitations-overlay">
+  <div class="full-inner">
+    <div class="nav-row">
+      <button class="nav-back" onclick="backToSolution()">
+        <i class="ti ti-arrow-left" aria-hidden="true"></i> Back to solution
+      </button>
+    </div>
+
+    <div class="lim-hero">
+      <div class="hero-tag">Limitations to consider</div>
+      <h1>Drawbacks of Slow-Release Fertilizers</h1>
+      <p>While slow-release fertilizers offer real environmental benefits, they are not without their challenges. Understanding these limitations is key to making informed decisions about their use.</p>
+    </div>
+
+    <p class="section-title">Key limitations</p>
+    <div class="cons-grid">
+
+      <div class="con-card">
+        <div class="con-header" onclick="toggleCon(this)">
+          <div class="con-icon"><i class="ti ti-coin" aria-hidden="true"></i></div>
+          <span class="con-title">Usually more expensive than conventional fertilizers</span>
+          <i class="ti ti-chevron-down con-chevron" aria-hidden="true"></i>
+        </div>
+        <div class="con-body">The coating technology and manufacturing process makes slow-release fertilizers significantly costlier upfront. For small-scale or subsistence farmers, this price gap can be a real barrier to adoption, even if long-term savings offset the initial cost.</div>
+      </div>
+
+      <div class="con-card">
+        <div class="con-header" onclick="toggleCon(this)">
+          <div class="con-icon"><i class="ti ti-temperature" aria-hidden="true"></i></div>
+          <span class="con-title">Nutrient release rate depends on temperature and soil conditions</span>
+          <i class="ti ti-chevron-down con-chevron" aria-hidden="true"></i>
+        </div>
+        <div class="con-body">Release rates are influenced by soil temperature, moisture, and microbial activity. In cooler climates or dry conditions, nutrients may be released too slowly. In hot, wet conditions, they may release faster than intended — making results harder to predict.</div>
+      </div>
+
+      <div class="con-card">
+        <div class="con-header" onclick="toggleCon(this)">
+          <div class="con-icon"><i class="ti ti-clock" aria-hidden="true"></i></div>
+          <span class="con-title">May not supply nutrients fast enough in urgent situations</span>
+          <i class="ti ti-chevron-down con-chevron" aria-hidden="true"></i>
+        </div>
+        <div class="con-body">If crops show signs of nutrient deficiency mid-season, slow-release fertilizers cannot correct the problem quickly. Farmers may still need to apply a fast-acting supplement alongside them, which adds cost and complexity.</div>
+      </div>
+
+      <div class="con-card">
+        <div class="con-header" onclick="toggleCon(this)">
+          <div class="con-icon"><i class="ti ti-trash" aria-hidden="true"></i></div>
+          <span class="con-title">Some coatings use synthetic materials that create waste concerns</span>
+          <i class="ti ti-chevron-down con-chevron" aria-hidden="true"></i>
+        </div>
+        <div class="con-body">Polymer-coated fertilizers can leave microplastic residues in the soil after the coating breaks down. While biodegradable coatings exist, they are not yet universally adopted — meaning some products may contribute to long-term soil contamination.</div>
+      </div>
+
+      <div class="con-card">
+        <div class="con-header" onclick="toggleCon(this)">
+          <div class="con-icon"><i class="ti ti-settings" aria-hidden="true"></i></div>
+          <span class="con-title">Farmers may need new application methods or management practices</span>
+          <i class="ti ti-chevron-down con-chevron" aria-hidden="true"></i>
+        </div>
+        <div class="con-body">Switching to slow-release fertilizers often requires adjusting application timing, rates, and equipment. Without proper training or guidance, farmers risk under- or over-applying them, which could reduce effectiveness and negate the environmental benefits.</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
 <script>
   document.getElementById('sdg-overlay').addEventListener('click', function(e) {
     if (e.target === this) this.classList.remove('active');
   });
+
+  function showLimitations() {
+    document.getElementById('solution-overlay').classList.remove('active');
+    const lim = document.getElementById('limitations-overlay');
+    lim.classList.add('active');
+    lim.scrollTop = 0;
+  }
+
+  function backToSolution() {
+    document.getElementById('limitations-overlay').classList.remove('active');
+    const sol = document.getElementById('solution-overlay');
+    sol.classList.add('active');
+    sol.scrollTop = 0;
+  }
+
+  function toggleCon(header) {
+    const card = header.parentElement;
+    card.classList.toggle('open');
+  }
 </script>
 
 </body>
